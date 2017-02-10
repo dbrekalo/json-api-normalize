@@ -18,6 +18,10 @@
             return property ? normalizerInstance.get(property) : normalizerInstance;
         }
 
+        if (typeof dataset === 'string') {
+            dataset = JSON.parse(dataset);
+        }
+
         if (!dataset || !dataset.data) {
             throw new Error('Invalid json api normalizer input');
         }

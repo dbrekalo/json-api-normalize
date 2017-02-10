@@ -3,6 +3,8 @@ var normalize = require("../");
 
 var testItem;
 var testCollection;
+var anotherTestItem;
+var yetAnotherTestItem;
 
 beforeEach(function() {
 
@@ -16,6 +18,7 @@ beforeEach(function() {
             },
             relationships: {
                 author: {data: {id: '42', type: 'user'}},
+                publisher: {data: {id: '24', type: 'user'}},
                 tags: [
                     {data: {id: '1', 'type': 'tag'}},
                     {data: {id: '2', 'type': 'tag'}}
@@ -56,6 +59,8 @@ beforeEach(function() {
         data: testCollection.data[0]
     };
 
+    yetAnotherTestItem = JSON.stringify(anotherTestItem);
+
 });
 
 
@@ -65,6 +70,12 @@ describe("Json api normalize", function() {
 
         assert.strictEqual(normalize(testItem, 'title'), 'JSON API paints my bikeshed!');
         assert.strictEqual(normalize(testItem).get('title'), 'JSON API paints my bikeshed!');
+
+    });
+
+    it('accepts string as dataset input', function() {
+
+        assert.strictEqual(normalize(yetAnotherTestItem, 'title'), 'JSON API paints my bikeshed!');
 
     });
 
