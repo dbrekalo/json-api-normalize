@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>JSON api normalize</title>
+<meta name="description" content="Normalize JSON api dataset">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://rawgit.com/dbrekalo/attire/master/dist/css/build.min.css">
+<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>
+
+        <script src="dist/index.js"></script>
+
+    </head>
+<body>
+
+    <section id="section-about" class="attireBlock">
+    <div class="inner">
+
+        <h1 data-nav-title="About" class="attireTitleType1">JSON api normalize</h1>
+
+        <p class="attireTextType1">
+            A simple way to traverse datasets based on JSON API specification.
+            Normalize is a lightweight javascript library with simple and powerful api.
+            Has no dependencies and weighs less than 1KB.
+        </p>
+
+        <nav class="attireAuthor">
+    <a class="imageElement" href="https://github.com/dbrekalo">
+        <img src="https://s.gravatar.com/avatar/32754a476fb3db1c5a1f9ad80c65d89d?s=80" alt="Damir Brekalo">
+    </a>
+    <a class="name" href="https://github.com/dbrekalo">Damir Brekalo</a>
+    <p class="socialBox">
+        <a href="mailto:dbrekalo@gmail.com" class="iconMail" title="Contact me by email">Contact me by email</a>
+        <a href="https://github.com/dbrekalo" class="iconGithub" title="Find me on Github">Find me on Github</a>
+        <a href="https://twitter.com/damirbr" class="iconTwitter" title="Reach me on Twitter">Reach me on Twitter</a>
+    </p>
+</nav>
+
+        <p class="attireTextType2">
+            "If you’ve ever argued with your team about the way your JSON responses should be formatted, JSON API can be your anti-bikeshedding tool."
+            If you are new to JSON api we recommend you browse <a href="http://jsonapi.org/">json api website</a> and
+            <a href="http://jsonapi.org/examples/">examples</a> to familiarize yourself with specification.
+            This library is built upon standards and conventions of JSON api and provides a simple way to traverse and retrieve all those attributes and relations.
+        </p>
+
+    </div>
+</section>
+    <section id="section-api-and-examples" class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Api and examples</h2>
+
+        <p class="attireTextType2 testText">
+            Lets start with a typical JSON api formatted dataset:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            articleJsonApiData = {
+                data: {
+                    type: 'article',
+                    id: '1',
+                    attributes: {
+                        title: 'JSON API paints my bikeshed!',
+                        body: 'The shortest article. Ever.'
+                    },
+                    relationships: {
+                        author: {data: {id: '42', type: 'user'}},
+                        tags: [
+                            {data: {id: '1', 'type': 'tag'}},
+                            {data: {id: '2', 'type': 'tag'}}
+                        ]
+                    }
+                },
+                included: [{
+                    type: 'user',
+                    id: '42',
+                    attributes: {
+                        firstName: 'John',
+                        lastName: 'Doe',
+                    },
+                    relationships: {
+                        boss: {'data': {'id': '42', 'type': 'user'}},
+                    }
+                }, {
+                    type: 'tag',
+                    id: '1',
+                    attributes: {
+                        name: 'tag 1'
+                    }
+                }, {
+                    type: 'tag',
+                    id: '2',
+                    attributes: {
+                        name: 'tag 2'
+                    }
+                }]
+            };
+        </code></pre>
+
+        <p class="attireTextType2 testText">
+            Using JSON api normalize we can retrive simple data like so:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            normalize(articleJsonApiData).get('title');
+            // will return 'JSON API paints my bikeshed!
+
+            normalize(articleJsonApiData).get('author.firstName');
+            // will output 'John'
+
+            normalize(articleJsonApiData).get(['id', 'title', 'body']);
+            // will return
+            // {
+            //     id: '1',
+            //     title: 'JSON API paints my bikeshed!',
+            //     body: 'The shortest article. Ever.'
+            // }
+
+        </code></pre>
+
+        <p class="attireTextType2 testText">
+            Next example shows how to retrieve complex dataset that can include (circular) relation data:
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            normalize(testCollection).get([
+                'id',
+                'title',
+                'body',
+                'author.id',
+                'author.firstName',
+                'author.lastName',
+                'author.boss.firstName',
+                'author.boss.lastName',
+                'tags.id',
+                'tags.name',
+            ]);
+
+            // will return
+            // {
+            //     id: '1',
+            //     title: 'JSON API paints my bikeshed!',
+            //     body: 'The shortest article. Ever.',
+            //     author: {
+            //         id: '42',
+            //         firstName: 'John',
+            //         lastName: 'Doe',
+            //         boss: {
+            //             firstName: 'John',
+            //             lastName: 'Doe'
+            //         }
+            //     },
+            //     tags: [{
+            //         id: '1',
+            //         name: 'tag 1'
+            //     }, {
+            //         id: '2',
+            //         name: 'tag 2'
+            //     }]
+            // };
+        </code></pre>
+
+    </div>
+</section>
+    <section id="section-installation" class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Installation</h2>
+
+        <p class="attireTextType2">
+            Json api normalize is packaged as UMD library so you can use it both on client and server - in CommonJS, AMD or browser environment.
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            // install via npm
+            npm install json-api-normalize --save
+
+            // if you use bundler
+            var normalize = require('json-api-normalize');
+
+            // or just using browser globals
+            var normalize = window.jsonApiNormalize;
+        </code></pre>
+
+        <p class="attireTextType2">
+            For browser usage browse dist folder - if working with build tools go with src folder.
+            Download library files from <a href="https://github.com/dbrekalo/json-api-normalize">github repo</a>,
+            get them via bower (bower install json-api-normalize)
+            or via npm (npm install json-api-normalize)
+        </p>
+
+    </div>
+</section>
+
+    <a class="githubRibbon" href="https://github.com/dbrekalo/json-api-normalize">
+    <img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+</a>
+    <footer class="attireFooter">
+    <p>This page is built with <a href="http://dbrekalo.github.io/attire/">Attire</a>.</p>
+</footer>
+
+</body>
+
+</html>

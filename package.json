@@ -1,0 +1,45 @@
+{
+  "name": "json-api-normalize",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbrekalo/json-api-normalize"
+  },
+  "license": "MIT",
+  "author": {
+    "email": "dbrekalo@gmail.com",
+    "name": "Damir Brekalo"
+  },
+  "main": "src/jsonApiNormalize.js",
+  "scripts": {
+    "watch": "grunt",
+    "build": "grunt build",
+    "test": "mocha --reporter spec",
+    "coverage": "istanbul cover _mocha -- -R spec",
+    "coverageReport": "npm run coverage && open coverage/lcov-report/*.html",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "bump:patch": "grunt bump:patch",
+    "bump:minor": "grunt bump:minor",
+    "bump:major": "grunt bump:major"
+  },
+  "keywords": [
+    "jsonApiNormalize",
+    "normalize",
+    "jsonApi"
+  ],
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-include-replace": "^5.0.0",
+    "istanbul": "^0.4.5",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.2.0"
+  }
+}

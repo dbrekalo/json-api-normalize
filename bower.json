@@ -1,0 +1,23 @@
+{
+  "name": "json-api-normalize",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dbrekalo/json-api-normalize",
+  "authors": [
+    "Damir Brekalo <dbrekalo@gmail.com>"
+  ],
+  "description": "",
+  "main": "dist/index.min.js",
+  "keywords": [
+    "jsonApiNormalize",
+    "normalize",
+    "jsonApi"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
