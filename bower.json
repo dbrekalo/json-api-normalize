@@ -1,6 +1,7 @@
 {
   "name": "json-api-normalize",
   "version": "1.1.1",
+  "description": "Normalize JSON api dataset",
   "homepage": "https://github.com/dbrekalo/json-api-normalize",
   "authors": [
     "Damir Brekalo <dbrekalo@gmail.com>"
@@ -9,8 +10,10 @@
   "main": "dist/index.min.js",
   "keywords": [
     "jsonApiNormalize",
+    "json-api-normalize",
     "normalize",
-    "jsonApi"
+    "jsonapi",
+    "json-api"
   ],
   "license": "MIT",
   "ignore": [
