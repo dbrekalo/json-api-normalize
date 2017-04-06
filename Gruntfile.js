@@ -1,9 +1,8 @@
+var attire = require('attire');
+
 module.exports = function(grunt) {
 
     grunt.initConfig({
-
-        npmPackage: grunt.file.readJSON('package.json'),
-        bowerPackage: grunt.file.readJSON('bower.json'),
 
         uglify: {
             min: {
@@ -47,14 +46,14 @@ module.exports = function(grunt) {
                     spawn: false
                 }
             },
-            demoFiles: {
+            readme: {
                 expand: true,
-                files: ['demo/**/*.html'],
-                tasks: ['includereplace'],
+                files: ['README.md'],
+                tasks: ['buildDemo'],
                 options: {
                     spawn: false
                 }
-            }
+            },
         },
 
         bump: {
@@ -64,29 +63,48 @@ module.exports = function(grunt) {
                 tagName: '%VERSION%',
                 push: false
             }
-        },
-
-        includereplace: {
-            dist: {
-                options: {
-                    globals: {
-                        repositoryUrl: '<%= npmPackage.repository.url %>',
-                        npmRepositoryName: '<%= npmPackage.name %>',
-                        bowerRepositoryName: '<%= bowerPackage.name %>'
-                    },
-                    prefix: '{{ ',
-                    suffix: ' }}'
-                },
-                src: 'demo/index.html',
-                dest: 'index.html'
-            }
         }
+
+    });
+
+    grunt.registerTask('buildDemo', function() {
+
+        var done = this.async();
+
+        attire.buildDemo({
+            file: 'README.md',
+            dest: 'index.html',
+            title: 'JSON api normalize',
+            description: 'Normalize JSON api dataset',
+            canonicalUrl: 'http://dbrekalo.github.io/json-api-normalize/',
+            githubUrl: 'https://github.com/dbrekalo/json-api-normalize',
+            userRepositories: {
+                user: 'dbrekalo',
+                onlyWithPages: true
+            },
+            author: {
+                caption: 'Damir Brekalo',
+                url: 'https://github.com/dbrekalo',
+                image: 'https://s.gravatar.com/avatar/32754a476fb3db1c5a1f9ad80c65d89d?s=80',
+                email: 'dbrekalo@gmail.com',
+                github: 'https://github.com/dbrekalo',
+                twitter: 'https://twitter.com/dbrekalo'
+            },
+            afterParse: function($) {
+                $('p').first().remove();
+                $('a').first().parent().remove();
+            },
+            inlineCss: true,
+        }).then(function() {
+            done();
+            grunt.log.ok(['Demo builded']);
+        });
 
     });
 
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('default', ['build', 'watch']);
-    grunt.registerTask('build', ['eslint', 'uglify', 'copy', 'includereplace']);
+    grunt.registerTask('build', ['eslint', 'uglify', 'copy', 'buildDemo']);
 
 };

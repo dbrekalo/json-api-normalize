@@ -19,10 +19,10 @@ beforeEach(function() {
             relationships: {
                 author: {data: {id: '42', type: 'user'}},
                 publisher: {data: {id: '24', type: 'user'}},
-                tags: [
-                    {data: {id: '1', 'type': 'tag'}},
-                    {data: {id: '2', 'type': 'tag'}}
-                ]
+                tags: {data: [
+                    {id: '1', 'type': 'tag'},
+                    {id: '2', 'type': 'tag'}
+                ]}
             }
         }],
         included: [{
@@ -33,7 +33,7 @@ beforeEach(function() {
                 lastName: 'Doe',
             },
             relationships: {
-                boss: {'data': {'id': '42', 'type': 'user'}},
+                boss: {data: {'id': '42', 'type': 'user'}},
             }
         }, {
             type: 'tag',

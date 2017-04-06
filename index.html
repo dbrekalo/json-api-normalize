@@ -1,208 +1,98 @@
-<!doctype html>
-<html lang="en">
-    <head>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><title>JSON api normalize</title><meta name="description" content="Normalize JSON api dataset"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="http://dbrekalo.github.io/json-api-normalize/"><style>/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:0.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}code[class*="language-"],pre[class*="language-"]{color:black;background:none;text-shadow:0 1px white;font-family:Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]::-moz-selection,pre[class*="language-"] ::-moz-selection,code[class*="language-"]::-moz-selection,code[class*="language-"] ::-moz-selection{text-shadow:none;background:#b3d4fc}pre[class*="language-"]::selection,pre[class*="language-"] ::selection,code[class*="language-"]::selection,code[class*="language-"] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*="language-"],pre[class*="language-"]{text-shadow:none}}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted{color:#905}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:rgba(255,255,255,0.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.function{color:#DD4A68}.token.regex,.token.important,.token.variable{color:#e90}.token.important,.token.bold{font-weight:bold}.token.italic{font-style:italic}.token.entity{cursor:help}@font-face{font-family:'Lato';font-style:normal;font-weight:300;src:url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-300-normal.eot);src:local("Lato Light"),local("Lato-Light"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-300-normal.woff2) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-300-normal.woff) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-300-normal.ttf) format("truetype"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-300-normal.svg#Lato) format("svg")}@font-face{font-family:'Lato';font-style:normal;font-weight:400;src:url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-400-normal.eot);src:local("Lato Regular"),local("Lato-Regular"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-400-normal.woff2) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-400-normal.woff) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-400-normal.ttf) format("truetype"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-400-normal.svg#Lato) format("svg")}@font-face{font-family:'Lato';font-style:normal;font-weight:700;src:url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-700-normal.eot);src:local("Lato Bold"),local("Lato-Bold"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-700-normal.woff2) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-700-normal.woff) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-700-normal.ttf) format("truetype"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-700-normal.svg#Lato) format("svg")}@font-face{font-family:'Lato';font-style:normal;font-weight:900;src:url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-900-normal.eot);src:local("Lato Black"),local("Lato-Black"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-900-normal.woff2) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-900-normal.woff) format("woff"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-900-normal.ttf) format("truetype"),url(https://rawgit.com/dbrekalo/attire/master/dist/fonts/lato-900-normal.svg#Lato) format("svg")}a{text-decoration:none;cursor:pointer;color:inherit}a:focus,a::-moz-focus-inner{outline:none}ol,ul,li,h1,h2,h3,h4,p,a,td,dl,dt,dd,fieldset{margin:0;padding:0;list-style:none;border:0;font-size:1em}table{border-collapse:collapse;border-spacing:0}img{vertical-align:bottom}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;outline:none;box-sizing:border-box;border-radius:0}textarea{overflow:auto;vertical-align:top;resize:vertical}label,button{cursor:pointer}html{font-size:62.5%}body{font-size:1em}@font-face{font-family:"attire";src:url("https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons.eot?v1.0");src:url("https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons.eot?v1.0#iefix") format("embedded-opentype"),url("https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons.woff?v1.0") format("woff"),url("https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons.ttf?v1.0") format("truetype"),url("https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons.svg?v1.0https://rawgit.com/dbrekalo/attire/master/dist/fonts/attireIcons") format("svg");font-weight:normal;font-style:normal}[class^="icon"],[class*=" icon"]{display:inline-block;position:relative;padding-left:40px}[class^="icon"]:before,[class*=" icon"]:before{font-family:"attire";speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;position:absolute;left:0;top:50%;margin:0;width:40px;height:40px;line-height:40px;margin-top:-20px;text-align:center;text-indent:0}.iconMenu:before{content:""}.iconArrowRight:before{content:""}.iconMail:before{content:""}.iconFacebook:before{content:""}.iconGithub:before{content:""}.iconTwitter:before{content:""}.iconCode:before{content:""}html,body{min-height:100%;background:#fff}a{color:#2B91F5}body{font-family:Lato, Arial, sans-serif;font-weight:400;font-style:normal;font-size:1em;min-width:32em;position:relative;color:#303030}@-webkit-keyframes attireNavEnter{from{opacity:0;-webkit-transform:translate3d(0, -1em, 0)}to{opacity:1;-webkit-transform:translate3d(0, 0, 0)}}@-moz-keyframes attireNavEnter{from{opacity:0;-moz-transform:translate3d(0, -1em, 0)}to{opacity:1;-moz-transform:translate3d(0, 0, 0)}}@keyframes attireNavEnter{from{opacity:0;-webkit-transform:translate3d(0, -1em, 0);-moz-transform:translate3d(0, -1em, 0);-ms-transform:translate3d(0, -1em, 0);-o-transform:translate3d(0, -1em, 0);transform:translate3d(0, -1em, 0)}to{opacity:1;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);-o-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0)}}.attireMainNav{position:relative;margin-bottom:-1em;z-index:10;background-color:#fff}.attireMainNav>.toggleBtn{margin:0;padding:0;border:0;cursor:pointer;background:none;padding:0;display:inline-block;width:60px;height:60px;text-indent:-9999em;overflow:hidden}.attireMainNav>.toggleBtn::-moz-focus-inner{padding:0;border:0}.attireMainNav>.toggleBtn:before{right:0;width:auto;text-indent:0}.attireMainNav>.toggleBtn:before{font-size:2.6em;width:2.30769em}.attireMainNav>ul{padding:0 0 1em;display:none}.attireMainNav.isActive{margin-bottom:0}.attireMainNav.isActive>ul{-webkit-animation:attireNavEnter 0.3s;-moz-animation:attireNavEnter 0.3s;animation:attireNavEnter 0.3s;display:block}.attireMainNav a{font-size:1.4em;display:block;padding:1.07143em 1.42857em;color:#636363;letter-spacing:0.07em;text-transform:uppercase}.attireMainNav a:hover{color:#2B91F5}@media screen and (min-width: 45.0625em){.attireMainNav{margin-bottom:0}.attireMainNav>.toggleBtn{display:none}.attireMainNav>ul{display:block;overflow:hidden;padding:0 1.5em}.attireMainNav li{float:left}.attireMainNav a{font-size:1.4em;display:block;padding:1.42857em 1.07143em}}.githubRibbon{position:absolute;right:0;top:0;width:10em;z-index:20}.githubRibbon>img{display:block;width:100%}@media screen and (min-width: 45.0625em){.githubRibbon{width:14.9em}}.attireBlock{background-color:#fff;position:relative;border-top:1px solid #e3e3e3}.attireBlock:first-child{border-top:0}.attireBlock>.inner{padding:2em}.attireBlock.mod1{background-color:#FBFBFB}@media screen and (min-width: 45.0625em){.attireBlock>.inner{max-width:70em;padding:6em 2.5em;margin:0 auto}}.attireSeparator{margin:2.5em 0;position:relative;border:0;border-top:1px solid #e3e3e3}.attireSeparator.mod1{margin:3.5em 0;width:10em}.attireSeparator.mod2{margin:6em 0;width:10em;border-top:5px solid #636363}.attireFooter{padding:2em;border-top:1px solid #e3e3e3}.attireFooter>p{font-family:Lato, Arial, sans-serif;font-weight:300;font-style:normal;font-size:1.5em}.attireAuthor{position:relative;margin-bottom:3em}.attireAuthor>.imageElement{display:inline-block;overflow:hidden;vertical-align:middle;width:4em;height:4em;position:relative;border-radius:50%;border-radius:50%}.attireAuthor>.imageElement>img{display:block;width:100%}.attireAuthor>.name{font-family:Lato, Arial, sans-serif;font-weight:700;font-style:normal;font-size:1.3em;display:inline-block;vertical-align:middle;position:relative;text-transform:uppercase;letter-spacing:0.1em;padding:0 1em;background-color:#fff;color:#303030}.attireAuthor>.name:first-child{padding-left:0}@media screen and (max-width: 45em){.attireAuthor>.socialBox{position:relative;padding:1em 0 0;margin-top:0.5em}.attireAuthor>.socialBox a{font-size:1.4em;display:block;padding:.57143em .35714em .57143em 3.92857em;color:#707070}.attireAuthor>.socialBox a:before{font-size:1.3em}.attireAuthor>.socialBox:before{content:"";position:absolute;left:5.5em;top:0;right:0;border-top:1px solid #e3e3e3}}@media screen and (min-width: 45.0625em){.attireAuthor{margin-bottom:5em}.attireAuthor.noImage{margin-top:4em}.attireAuthor>.imageElement{width:5em;height:5em}.attireAuthor>.socialBox{position:absolute;right:0;top:50%;margin-top:-2em;background-color:#fff;padding:0 2em 0 1em}.attireAuthor>.socialBox a{padding:0;display:inline-block;width:40px;height:40px;text-indent:-9999em;overflow:hidden}.attireAuthor>.socialBox a:before{right:0;width:auto;text-indent:0}.attireAuthor>.socialBox a:before{font-size:2em;color:#636363}.attireAuthor>.socialBox a:hover:before{color:#2B91F5}.attireAuthor:before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid #e3e3e3}}.attireTitleType1{font-family:Lato, Arial, sans-serif;font-weight:900;font-style:normal;font-size:4em;padding:0;margin:0;word-wrap:break-word}@media screen and (min-width: 45.0625em){.attireTitleType1{font-size:6em}}.attireTitleType1+.attireTextType2{margin-top:1.5625em}.attireTitleType2{font-family:Lato, Arial, sans-serif;font-weight:900;font-style:normal;font-size:3.8em;padding:0;margin:0 0 .55556em;word-wrap:break-word}.attireTitleType3{font-family:Lato, Arial, sans-serif;font-weight:700;font-style:normal;font-size:2.2em;padding:0;margin:0 0 .68182em;word-wrap:break-word}.attireTextType1{font-family:Lato, Arial, sans-serif;font-weight:300;font-style:normal;font-size:2.2em;padding:0;margin:.90909em 0 .90909em;color:#707070;line-height:1.4}@media screen and (min-width: 45.0625em){.attireTextType1{font-size:2.8em;margin:.71429em 0 1.07143em}}.attireTextType2{font-size:1.8em;padding:0;margin:0 0 1.25em;color:#636363;line-height:1.6}.attireTextType3{font-size:1.6em;padding:0;margin:0 0 1.25em;color:#636363;line-height:1.6}.attireListType1>li{font-size:1.8em;padding-left:1.66667em;margin:.55556em 0;position:relative;color:#636363;line-height:1.6}.attireListType1>li:before{content:"—";position:absolute;left:0;top:0em}.attireTextButtonType1{margin:0;padding:0;border:0;cursor:pointer;background:none;color:#2B91F5}.attireTextButtonType1::-moz-focus-inner{padding:0;border:0}.attireCodeHighlight[class*="language-"]{margin:2em 0}.attireCodeHighlight>code{font-size:1.4em}.attireCodeToggleBlock .attireCodeHighlight{display:none}.attireCodeToggleBlock.isActive .attireCodeHighlight{display:block}.attireCodeToggleBtn{margin:0;padding:0;border:0;cursor:pointer;background:none;padding:0 1.2em 0 0;color:#2B91F5}.attireCodeToggleBtn::-moz-focus-inner{padding:0;border:0}.attireCodeToggleBtn:before{left:auto;right:0;text-align:right}.attireUserRepositories{padding:2em;background-color:#FBFBFB;border-top:1px solid #e3e3e3}.attireUserRepositories>.loader{font-family:Lato, Arial, sans-serif;font-weight:300;font-style:normal;font-size:1.6em;padding:1.25em 0;text-align:center;color:#707070}.attireUserRepositories>.title{font-family:Lato, Arial, sans-serif;font-weight:300;font-style:normal;font-size:1.5em;padding-bottom:1.33333em;color:#707070}.attireUserRepositories>ul>li{padding:2em 0;position:relative}.attireUserRepositories>ul>li:last-child{padding-bottom:0}.attireUserRepositories>ul>li:before{content:"";position:absolute;left:0;top:0;width:3em;border-top:1px solid #e3e3e3}@media screen and (min-width: 45.0625em){.attireUserRepositories>.title{text-align:center;position:relative;padding:.33333em 0 1.66667em}.attireUserRepositories>.title:before{content:"";position:absolute;top:100%;left:50%;width:3.33333em;margin-left:-1.66667em;border-top:1px solid #e3e3e3}.attireUserRepositories>ul{max-width:110em;margin:0 auto;overflow:hidden}.attireUserRepositories>ul>li{float:left;width:33.33333%;box-sizing:border-box;padding:3em 4em 4em}.attireUserRepositories>ul>li:before{display:none}}.attireUserRepo{display:block}.attireUserRepo>.title{font-family:Lato, Arial, sans-serif;font-weight:700;font-style:normal;font-size:2.4em;margin-bottom:.75em;color:#303030}.attireUserRepo>.description{font-size:1.6em;line-height:1.6;color:#636363}</style></head><body><nav class="attireMainNav"><button class="toggleBtn iconMenu" type="button">Toggle navigation</button><ul><li><a href="#section-json-api-normalize">About</a></li><li><a href="#section-api-and-examples">Api and examples</a></li><li><a href="#section-installation">Installation</a></li></ul></nav><section id="section-json-api-normalize" class="attireBlock"><div class="inner"><h1 id="json-api-normalize" class="attireTitleType1">JSON api normalize</h1><p class="attireTextType1">A simple way to traverse datasets based on JSON API specification. Normalize is a lightweight javascript library with simple and powerful api. Has no dependencies and weighs less than 1KB.</p><nav class="attireAuthor withImage"><a class="imageElement" href="https://github.com/dbrekalo"><img src="https://s.gravatar.com/avatar/32754a476fb3db1c5a1f9ad80c65d89d?s=80" alt="Damir Brekalo"> </a><a class="name" href="https://github.com/dbrekalo">Damir Brekalo</a><p class="socialBox"><a href="mailto:dbrekalo@gmail.com" class="iconMail" title="Contact me by email">Contact me by email</a> <a href="https://github.com/dbrekalo" class="iconGithub" title="Find me on Github">Find me on Github</a> <a href="https://twitter.com/dbrekalo" class="iconTwitter" title="Reach me on Twitter">Reach me on Twitter</a></p></nav><p class="attireTextType2">"If you’ve ever argued with your team about the way your JSON responses should be formatted, JSON API can be your anti-bikeshedding tool." If you are new to JSON api we recommend you browse <a href="http://jsonapi.org/">json api website</a> and <a href="http://jsonapi.org/examples/">examples</a> to familiarize yourself with specification. This library is built upon standards and conventions of JSON api and provides a simple way to traverse and retrieve all those attributes and relations.</p></div></section><section id="section-api-and-examples" class="attireBlock"><div class="inner"><h2 id="api-and-examples" class="attireTitleType2">Api and examples</h2><p class="attireTextType2">Lets start with a typical JSON api formatted dataset:</p><pre class="attireCodeHighlight"><code class="lang-js">articleJsonApiData = {
+    data: {
+        type: 'article',
+        id: '1',
+        attributes: {
+            title: 'JSON API paints my bikeshed!',
+            body: 'The shortest article. Ever.'
+        },
+        relationships: {
+            author: {data: {id: '42', type: 'user'}},
+            publisher: {data: {id: '24', type: 'user'}},
+            tags: {data: [
+                {id: '1', 'type': 'tag'},
+                {id: '2', 'type': 'tag'}
+            ]}
+        }
+    },
+    included: [{
+        type: 'user',
+        id: '42',
+        attributes: {
+            firstName: 'John',
+            lastName: 'Doe',
+        },
+        relationships: {
+            boss: {'data': {'id': '42', 'type': 'user'}},
+        }
+    }, {
+        type: 'tag',
+        id: '1',
+        attributes: {
+            name: 'tag 1'
+        }
+    }, {
+        type: 'tag',
+        id: '2',
+        attributes: {
+            name: 'tag 2'
+        }
+    }]
+};
+</code></pre><p class="attireTextType2">Using JSON api normalize we can retrive simple data like so:</p><pre class="attireCodeHighlight"><code class="lang-js">normalize(articleJsonApiData).get('title');
+// will return 'JSON API paints my bikeshed!
 
-        <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>JSON api normalize</title>
-<meta name="description" content="Normalize JSON api dataset">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+normalize(articleJsonApiData).get('author.firstName');
+// will output 'John'
 
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://rawgit.com/dbrekalo/attire/master/dist/css/build.min.css">
-<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>
+normalize(articleJsonApiData).get(['id', 'title', 'body']);
+// will return
+// {
+//     id: '1',
+//     title: 'JSON API paints my bikeshed!',
+//     body: 'The shortest article. Ever.'
+// }
+</code></pre><p class="attireTextType2">Next example shows how to retrieve complex dataset that can include (circular) relation data:</p><pre class="attireCodeHighlight"><code class="lang-js">normalize(articleJsonApiData).get([
+    'id',
+    'title',
+    'body',
+    'author.id',
+    'author.firstName',
+    'author.lastName',
+    'author.boss.firstName',
+    'author.boss.lastName',
+    'tags.id',
+    'tags.name',
+]);
 
-        <script src="dist/index.js"></script>
+// will return
+// {
+//     id: '1',
+//     title: 'JSON API paints my bikeshed!',
+//     body: 'The shortest article. Ever.',
+//     author: {
+//         id: '42',
+//         firstName: 'John',
+//         lastName: 'Doe',
+//         boss: {
+//             firstName: 'John',
+//             lastName: 'Doe'
+//         }
+//     },
+//     tags: [{
+//         id: '1',
+//         name: 'tag 1'
+//     }, {
+//         id: '2',
+//         name: 'tag 2'
+//     }]
+// };
+</code></pre></div></section><section id="section-installation" class="attireBlock"><div class="inner"><h2 id="installation" class="attireTitleType2">Installation</h2><p class="attireTextType2">Json api normalize is packaged as UMD library so you can use it both on client and server (CommonJS and AMD environment) or with browser globals.</p><pre class="attireCodeHighlight"><code class="lang-js">// install via npm
+npm install json-api-normalize --save
 
-    </head>
-<body>
+// if you use bundler
+var normalize = require('json-api-normalize');
 
-    <section id="section-about" class="attireBlock">
-    <div class="inner">
-
-        <h1 data-nav-title="About" class="attireTitleType1">JSON api normalize</h1>
-
-        <p class="attireTextType1">
-            A simple way to traverse datasets based on JSON API specification.
-            Normalize is a lightweight javascript library with simple and powerful api.
-            Has no dependencies and weighs less than 1KB.
-        </p>
-
-        <nav class="attireAuthor">
-    <a class="imageElement" href="https://github.com/dbrekalo">
-        <img src="https://s.gravatar.com/avatar/32754a476fb3db1c5a1f9ad80c65d89d?s=80" alt="Damir Brekalo">
-    </a>
-    <a class="name" href="https://github.com/dbrekalo">Damir Brekalo</a>
-    <p class="socialBox">
-        <a href="mailto:dbrekalo@gmail.com" class="iconMail" title="Contact me by email">Contact me by email</a>
-        <a href="https://github.com/dbrekalo" class="iconGithub" title="Find me on Github">Find me on Github</a>
-        <a href="https://twitter.com/damirbr" class="iconTwitter" title="Reach me on Twitter">Reach me on Twitter</a>
-    </p>
-</nav>
-
-        <p class="attireTextType2">
-            "If you’ve ever argued with your team about the way your JSON responses should be formatted, JSON API can be your anti-bikeshedding tool."
-            If you are new to JSON api we recommend you browse <a href="http://jsonapi.org/">json api website</a> and
-            <a href="http://jsonapi.org/examples/">examples</a> to familiarize yourself with specification.
-            This library is built upon standards and conventions of JSON api and provides a simple way to traverse and retrieve all those attributes and relations.
-        </p>
-
-    </div>
-</section>
-    <section id="section-api-and-examples" class="attireBlock">
-    <div class="inner">
-
-        <h2 class="attireTitleType2">Api and examples</h2>
-
-        <p class="attireTextType2 testText">
-            Lets start with a typical JSON api formatted dataset:
-        </p>
-
-        <pre class="attireCodeHighlight"><code class="language-javascript">
-            articleJsonApiData = {
-                data: {
-                    type: 'article',
-                    id: '1',
-                    attributes: {
-                        title: 'JSON API paints my bikeshed!',
-                        body: 'The shortest article. Ever.'
-                    },
-                    relationships: {
-                        author: {data: {id: '42', type: 'user'}},
-                        tags: [
-                            {data: {id: '1', 'type': 'tag'}},
-                            {data: {id: '2', 'type': 'tag'}}
-                        ]
-                    }
-                },
-                included: [{
-                    type: 'user',
-                    id: '42',
-                    attributes: {
-                        firstName: 'John',
-                        lastName: 'Doe',
-                    },
-                    relationships: {
-                        boss: {'data': {'id': '42', 'type': 'user'}},
-                    }
-                }, {
-                    type: 'tag',
-                    id: '1',
-                    attributes: {
-                        name: 'tag 1'
-                    }
-                }, {
-                    type: 'tag',
-                    id: '2',
-                    attributes: {
-                        name: 'tag 2'
-                    }
-                }]
-            };
-        </code></pre>
-
-        <p class="attireTextType2 testText">
-            Using JSON api normalize we can retrive simple data like so:
-        </p>
-
-        <pre class="attireCodeHighlight"><code class="language-javascript">
-            normalize(articleJsonApiData).get('title');
-            // will return 'JSON API paints my bikeshed!
-
-            normalize(articleJsonApiData).get('author.firstName');
-            // will output 'John'
-
-            normalize(articleJsonApiData).get(['id', 'title', 'body']);
-            // will return
-            // {
-            //     id: '1',
-            //     title: 'JSON API paints my bikeshed!',
-            //     body: 'The shortest article. Ever.'
-            // }
-
-        </code></pre>
-
-        <p class="attireTextType2 testText">
-            Next example shows how to retrieve complex dataset that can include (circular) relation data:
-        </p>
-
-        <pre class="attireCodeHighlight"><code class="language-javascript">
-            normalize(articleJsonApiData).get([
-                'id',
-                'title',
-                'body',
-                'author.id',
-                'author.firstName',
-                'author.lastName',
-                'author.boss.firstName',
-                'author.boss.lastName',
-                'tags.id',
-                'tags.name',
-            ]);
-
-            // will return
-            // {
-            //     id: '1',
-            //     title: 'JSON API paints my bikeshed!',
-            //     body: 'The shortest article. Ever.',
-            //     author: {
-            //         id: '42',
-            //         firstName: 'John',
-            //         lastName: 'Doe',
-            //         boss: {
-            //             firstName: 'John',
-            //             lastName: 'Doe'
-            //         }
-            //     },
-            //     tags: [{
-            //         id: '1',
-            //         name: 'tag 1'
-            //     }, {
-            //         id: '2',
-            //         name: 'tag 2'
-            //     }]
-            // };
-        </code></pre>
-
-    </div>
-</section>
-    <section id="section-installation" class="attireBlock">
-    <div class="inner">
-
-        <h2 class="attireTitleType2">Installation</h2>
-
-        <p class="attireTextType2">
-            Json api normalize is packaged as UMD library so you can use it both on client and server (CommonJS and AMD environment) or with browser globals.
-        </p>
-
-        <pre class="attireCodeHighlight"><code class="language-javascript">
-            // install via npm
-            npm install json-api-normalize --save
-
-            // if you use bundler
-            var normalize = require('json-api-normalize');
-
-            // or just using browser globals
-            var normalize = window.jsonApiNormalize;
-        </code></pre>
-
-        <p class="attireTextType2">
-            For browser usage browse dist folder - if working with build tools go with src folder.
-            Download library files from <a href="https://github.com/dbrekalo/json-api-normalize">github repo</a>,
-            get them via bower (bower install json-api-normalize)
-            or via npm (npm install json-api-normalize)
-        </p>
-
-    </div>
-</section>
-
-    <a class="githubRibbon" href="https://github.com/dbrekalo/json-api-normalize">
-    <img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-</a>
-    <footer class="attireFooter">
-    <p>This page is built with <a href="http://dbrekalo.github.io/attire/">Attire</a>.</p>
-</footer>
-
-</body>
-
-</html>
+// or just using browser globals
+var normalize = window.jsonApiNormalize;
+</code></pre></div></section><section class="attireUserRepositories" data-only-with-pages="true" data-user="dbrekalo"></section><a class="githubRibbon" href="https://github.com/dbrekalo/json-api-normalize"><img src="https://rawgit.com/dbrekalo/attire/master/dist/images/githubRibbon.png" alt="Fork me on GitHub"></a><footer class="attireFooter"><p>This page is built with <a href="http://dbrekalo.github.io/attire/">Attire</a>.</p></footer><script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script></body></html>

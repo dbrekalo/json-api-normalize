@@ -112,7 +112,7 @@
 
             if (!relationPropertyTree) {
 
-                var relationData = entity.relationships && entity.relationships[property];
+                var relationData = entity.relationships && entity.relationships[property] && entity.relationships[property].data;
 
                 if (relationData) {
 
@@ -143,7 +143,7 @@
 
     function getRelationData(relationName, relationPropertyTree, entity, haystack) {
 
-        var relationData = entity.relationships && entity.relationships[relationName];
+        var relationData = entity.relationships && entity.relationships[relationName] && entity.relationships[relationName].data;
         var relatedEntity = relationData && getRelatedEntity(relationData, haystack);
 
         if (isArray(relatedEntity)) {
@@ -178,8 +178,8 @@
         var temp = [];
 
         var search = isArray(relationData) ? map(relationData, function(item) {
-            return item.data.type + '@' + item.data.id;
-        }) : [relationData.data.type + '@' + relationData.data.id];
+            return item.type + '@' + item.id;
+        }) : [relationData.type + '@' + relationData.id];
 
         each(haystack, function(item) {
             search.indexOf(item.type + '@' + item.id) >= 0 && temp.push(item);
