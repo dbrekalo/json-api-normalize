@@ -22,6 +22,9 @@ beforeEach(function() {
                 tags: {data: [
                     {id: '1', 'type': 'tag'},
                     {id: '2', 'type': 'tag'}
+                ]},
+                comments: {data: [
+                    {id: '1', 'type': 'comment'}
                 ]}
             }
         }],
@@ -46,6 +49,12 @@ beforeEach(function() {
             id: '2',
             attributes: {
                 name: 'tag 2'
+            }
+        }, {
+            type: 'comment',
+            id: '1',
+            attributes: {
+                text: 'Lorem ipsum dolor sit ament'
             }
         }]
     };
@@ -131,6 +140,26 @@ describe("Json api normalize", function() {
         assert.throws(function() {
             normalize({});
         });
+
+    });
+
+    it('returns array for one to many relation when relation length is one', function() {
+
+        var dataItem = normalize(testItem).get(['comments.text']);
+
+        assert.deepEqual(dataItem, {
+            comments: [{
+                "text": "Lorem ipsum dolor sit ament"
+            }]
+        });
+
+        var dataCollection = normalize(testCollection).get(['comments.text']);
+
+        assert.deepEqual(dataCollection, [{
+            comments: [{
+                "text": "Lorem ipsum dolor sit ament"
+            }]
+        }]);
 
     });
 
