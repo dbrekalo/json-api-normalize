@@ -187,7 +187,7 @@
 
         if (temp.length === 0) {
             return undefined;
-        } else if (temp.length === 1) {
+        } else if (temp.length === 1 && !isArray(relationData)) {
             return temp[0];
         } else {
             return temp;
