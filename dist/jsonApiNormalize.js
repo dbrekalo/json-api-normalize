@@ -137,7 +137,7 @@
 
     function getEntityValue(property, entity) {
 
-        return ['id', 'type'].indexOf(property) >= 0 ? entity[property] : entity.attributes[property];
+        return ['id', 'type', 'links'].indexOf(property) >= 0 ? entity[property] : entity.attributes[property];
 
     }
 
@@ -187,7 +187,7 @@
 
         if (temp.length === 0) {
             return undefined;
-        } else if (temp.length === 1) {
+        } else if (temp.length === 1 && !isArray(relationData)) {
             return temp[0];
         } else {
             return temp;

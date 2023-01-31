@@ -137,7 +137,7 @@
 
     function getEntityValue(property, entity) {
 
-        return ['id', 'type'].indexOf(property) >= 0 ? entity[property] : entity.attributes[property];
+        return ['id', 'type', 'links'].indexOf(property) >= 0 ? entity[property] : entity.attributes[property];
 
     }
 

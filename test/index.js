@@ -26,6 +26,9 @@ beforeEach(function() {
                 comments: {data: [
                     {id: '1', 'type': 'comment'}
                 ]}
+            },
+            links: {
+                self: 'http://example.com/articles/1'
             }
         }],
         included: [{
@@ -37,6 +40,9 @@ beforeEach(function() {
             },
             relationships: {
                 boss: {data: {'id': '42', 'type': 'user'}},
+            },
+            links: {
+                self: 'http://example.com/users/42'
             }
         }, {
             type: 'tag',
@@ -198,6 +204,30 @@ describe("Json api normalize", function() {
                 id: '2',
                 name: 'tag 2'
             }]
+        }]);
+
+    });
+
+    it('retrieves top level and nested links', function() {
+
+        var data = normalize(testCollection).get([
+            'id',
+            'links',
+            'author.id',
+            'author.links',
+        ]);
+
+        assert.deepEqual(data, [{
+            id: '1',
+            links: {
+                self: 'http://example.com/articles/1'
+            },
+            author: {
+                id: '42',
+                links: {
+                    self: 'http://example.com/users/42'
+                }
+            },
         }]);
 
     });
